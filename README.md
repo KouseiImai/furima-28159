@@ -27,15 +27,16 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column       | Type    | Options     |
-| ------------ | ------- | ----------- |
-| nickname     | string  | null: false |
-| email        | string  | null: false |
-| password     | string  | null: false |
-| family_name  | string  | null: false |
-| name         | string  | null: false |
-| kana         | string  | null: false |
-| birthday_id  | integer | null: false |
+| Column           | Type    | Options     |
+| ---------------- | ------- | ----------- |
+| nickname         | string  | null: false |
+| email            | string  | null: false |
+| password         | string  | null: false |
+| family_name      | string  | null: false |
+| first_name       | string  | null: false |
+| family_name_kana | string  | null: false |
+| first_name_kana  | string  | null: false |
+| birthday_id      | date    | null: false |
 
 ### Association
 - has_many :products
@@ -47,9 +48,8 @@ Things you may want to cover:
 | Column              | Type    | Options                        |
 | ------------------- | ------- | ------------------------------ |
 | user_id             | integer | null: false, foreign_key: true |
-| products_image      | string  | null: false                    |
-| products_name       | string  | null: false                    |
-| explanation         | string  | null: false                    |
+| name                | string  | null: false                    |
+| explanation         | text    | null: false                    |
 | comment             | text    | null: false                    |
 | category_id         | integer | null: false                    |
 | condition_id        | integer | null: false                    |
@@ -65,19 +65,19 @@ Things you may want to cover:
 ## purchases テーブル
 | Column      | Type    | Options                        |
 | ----------- | ------- | ------------------------------ |
-| price       | integer | null: false                    |
+| products_id | integer | null: false                    |
 | buyer_id    | integer | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :products
-- has_one :buyers
+- has_one :buyer
 
 
 ## buyers テーブル
 | Column            | Type    | Options     |
 | ----------------- | ------- | ----------- |
 | purchase_id       | integer | null: false |
-| postal_code       | integer | null: false |
+| postal_code       | string  | null: false |
 | prefecture_id     | integer | null: false |
 | municipal         | string  | null: false |
 | address           | string  | null: false |
@@ -85,7 +85,7 @@ Things you may want to cover:
 | phone_number      | integer | null: false |
 
 ### Association
-- belongs_to :purchases
+- belongs_to :purchase
 
 <!-- ## comments テーブル
 | Column      | Type     | Options     |
@@ -99,10 +99,12 @@ Things you may want to cover:
 # ER図
 ![furima-28159 ER図](https://user-images.githubusercontent.com/69197315/93693887-9c7ae580-fb40-11ea-8839-77fb1cc269a8.png)
 
+https://gyazo.com/5eb8c9dd5a9c0600e9a12febddd5d8b7
+
 # 画面遷移図
 ![furima-28159 画面遷移図](https://user-images.githubusercontent.com/69197315/93693890-a43a8a00-fb40-11ea-8a75-7f2b942d4521.png)
 
-
+https://gyazo.com/ec23cfd4661f7b77dc7bd7f66ccc7e73
 
 
 
