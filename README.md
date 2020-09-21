@@ -97,7 +97,7 @@ Things you may want to cover:
 ### Association -->
 
 # ER図
-![furima-28159 ER図](https://user-images.githubusercontent.com/69197315/93693887-9c7ae580-fb40-11ea-8839-77fb1cc269a8.png)
+![furima-28159 ER図](https://user-images.githubusercontent.com/69197315/93750004-d0840280-fc35-11ea-9fa5-ec44b5fca64b.png)
 
 https://gyazo.com/fad400f84a2bf4737786ccc2d56e626c
 
