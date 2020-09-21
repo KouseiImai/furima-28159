@@ -4,31 +4,27 @@ package "" as target_system <<Database>> {
   entity "users" as users {
     nickname 
     --
-    nickname
-    --
     email
     --
-    password
+    encrypred_password
     --
     family_name
     --
-    name
+    first_name
     --
-    kana
+    family_name_kana
     --
-    birthday_id
+    first_name_kana
+    --
+    birthday
   }
 
   entity "products " as products  {
     user_id
     --
-    products_image
-    --
-    products_name
+    name
     --
     explanation
-    --
-    comment
     --
     category_id
     --
@@ -46,7 +42,7 @@ package "" as target_system <<Database>> {
   entity "purchases" as purchases {
     price
     --
-    buyer_id
+    user_id
   }
 
   entity "buyers" as buyers {
