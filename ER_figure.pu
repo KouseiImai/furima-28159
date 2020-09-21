@@ -1,0 +1,72 @@
+@startuml EntityRelationship
+package "" as target_system <<Database>> {
+
+  entity "users" as users {
+    nickname 
+    --
+    email
+    --
+    encrypred_password
+    --
+    family_name
+    --
+    first_name
+    --
+    family_name_kana
+    --
+    first_name_kana
+    --
+    birthday
+  }
+
+  entity "products " as products  {
+    user_id
+    --
+    name
+    --
+    explanation
+    --
+    category_id
+    --
+    condition_id
+    --
+    shipping_charge_id
+    --
+    shipping_area_id
+    --
+    shipping_day_id
+    --
+    price
+  }
+
+  entity "purchases" as purchases {
+    price
+    --
+    user_id
+  }
+
+  entity "buyers" as buyers {
+    purchase_id
+    --
+    postal_code
+    --
+    prefecture_id
+    --
+    municipal
+    --
+    address
+    --
+    building_name
+    --
+    phone_number
+  }
+
+
+  ' リレーションシップ
+  users ||-{ products
+  users ||-{ purchases
+  purchases ||-|| buyers
+  products ||-|| purchases
+  
+  }
+@enduml
