@@ -36,7 +36,7 @@ Things you may want to cover:
 | first_name       | string  | null: false |
 | family_name_kana | string  | null: false |
 | first_name_kana  | string  | null: false |
-| birthday_id      | date    | null: false |
+| birthday         | date    | null: false |
 
 ### Association
 - has_many :products
@@ -50,7 +50,6 @@ Things you may want to cover:
 | user_id             | integer | null: false, foreign_key: true |
 | name                | string  | null: false                    |
 | explanation         | text    | null: false                    |
-| comment             | text    | null: false                    |
 | category_id         | integer | null: false                    |
 | condition_id        | integer | null: false                    |
 | shipping_charge_id  | integer | null: false                    |
@@ -59,14 +58,14 @@ Things you may want to cover:
 | price               | integer | null: false                    |
 
 ### Association
-- belongs_to :users
-- has_one :purchases
+- belongs_to :user
+- has_one :purchase
 
 ## purchases テーブル
 | Column      | Type    | Options                        |
 | ----------- | ------- | ------------------------------ |
-| products_id | integer | null: false                    |
-| buyer_id    | integer | null: false, foreign_key: true |
+| product_id  | integer | null: false, foreign_key: true |
+| user_id     | integer | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :products
@@ -81,8 +80,8 @@ Things you may want to cover:
 | prefecture_id     | integer | null: false |
 | municipal         | string  | null: false |
 | address           | string  | null: false |
-| building_name     | string  | null: false |
-| phone_number      | integer | null: false |
+| building_name     | string  |             |
+| phone_number      | string  | null: false |
 
 ### Association
 - belongs_to :purchase
