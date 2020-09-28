@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   belongs_to_active_hash :condition
   belongs_to_active_hash :shipping_charge
   belongs_to_active_hash :shipping_area
+  belongs_to_active_hash :shipping_day
 
   has_one_attached :image
 
@@ -14,6 +15,7 @@ class Product < ApplicationRecord
     validates :condition_id
     validates :shipping_charge_id
     validates :shipping_area
+    validates :shipping_day
   end
 
   with_options presence: true do
