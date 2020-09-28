@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
   belongs_to_active_hash :shipping_charge
+  belongs_to_active_hash :shipping_area
 
   has_one_attached :image
 
@@ -12,6 +13,7 @@ class Product < ApplicationRecord
     validates :category_id
     validates :condition_id
     validates :shipping_charge_id
+    validates :shipping_area
   end
 
   with_options presence: true do
