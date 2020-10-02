@@ -17,6 +17,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def selling_price_calc
+    
+  end
+
   private
 
   def move_to_index
