@@ -8,11 +8,6 @@ RSpec.describe Product, type: :model do
 
   describe '商品出品' do
     context '商品出品が行える場合' do
-      # it 'ログインしているユーザーのみが、出品ページへ遷移できる' do
-      #   visit root_path
-      #   visit new_product_path
-      #   expect(current_path).to eq root_path
-      # end
       it '商品出品に必要な情報が入力されていると登録できる' do
         expect(@product).to be_valid
       end
