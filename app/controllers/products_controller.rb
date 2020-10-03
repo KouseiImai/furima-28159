@@ -18,7 +18,6 @@ class ProductsController < ApplicationController
   end
 
   def selling_price_calc
-    
   end
 
   private
