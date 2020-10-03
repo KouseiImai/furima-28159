@@ -8,8 +8,7 @@ class Product < ApplicationRecord
 
   has_one_attached :image
 
-
-  #バリデーション
+  # バリデーション
   with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :condition_id
@@ -22,6 +21,6 @@ class Product < ApplicationRecord
     validates :image
     validates :name
     validates :explanation
-    validates :price, numericality: { only_integer: true }, inclusion:{ in: 300..9999999 }, format: { with: /\A[0-9]+\z/}
+    validates :price, numericality: { only_integer: true }, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/}
   end
 end

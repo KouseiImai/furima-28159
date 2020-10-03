@@ -17,4 +17,3 @@ RSpec.describe '商品出品画面への遷移', type: :system do
     end
   end
 end
-
