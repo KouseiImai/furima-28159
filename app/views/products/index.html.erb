@@ -128,28 +128,28 @@
       <% if @products != blank? %>
         <% @products.each do |product| %>
           <li class='list'>
-              <%= link_to "#" do %> 
-                <div class='item-img-content'>
-                  <%= image_tag product.image, class: "item-img" if product.image.attached? %>
-                  <%# 商品が売れていればsold outを表示しましょう(商品購入機能未実装の為残し) %>
-                  <%# <div class='sold-out'>
-                    <span>Sold Out!!</span>
-                  </div> %>
-                  <%# //商品が売れていればsold outを表示しましょう(商品購入機能未実装の為残し) %>
-                </div>
-                <div class='item-info'>
-                  <h3 class='item-name'>
-                    <%= product.name %>
-                  </h3>
-                  <div class='item-price'>
-                    <span><%= product.price %>円<br>(税込み)</span>
-                    <div class='star-btn'>
-                      <%= image_tag "star.png", class:"star-icon" %>
-                      <span class='star-count'>0</span>
-                    </div>
+            <%= link_to product_path(product.id) do %> 
+              <div class='item-img-content'>
+                <%= image_tag product.image, class: "item-img" if product.image.attached? %>
+                <%# 商品が売れていればsold outを表示しましょう(商品購入機能未実装の為残し) %>
+                <%# <div class='sold-out'>
+                  <span>Sold Out!!</span>
+                </div> %>
+                <%# //商品が売れていればsold outを表示しましょう(商品購入機能未実装の為残し) %>
+              </div>
+              <div class='item-info'>
+                <h3 class='item-name'>
+                  <%= product.name %>
+                </h3>
+                <div class='item-price'>
+                  <span><%= product.price %>円<br>(税込み)</span>
+                  <div class='star-btn'>
+                    <%= image_tag "star.png", class:"star-icon" %>
+                    <span class='star-count'>0</span>
                   </div>
                 </div>
-              <% end %>
+              </div>
+            <% end %>
           </li>
         <% end %>
       <% else %>
