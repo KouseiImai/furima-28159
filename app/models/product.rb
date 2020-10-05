@@ -5,8 +5,8 @@ class Product < ApplicationRecord
   belongs_to_active_hash :shipping_charge
   belongs_to_active_hash :shipping_area
   belongs_to_active_hash :shipping_day
-
   has_one_attached :image
+  belongs_to :user
 
   # バリデーション
   with_options numericality: { other_than: 1 } do
