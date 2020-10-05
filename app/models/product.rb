@@ -21,6 +21,6 @@ class Product < ApplicationRecord
     validates :image
     validates :name
     validates :explanation
-    validates :price, numericality: { only_integer: true }, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/}
+    validates :price, numericality: { only_integer: true }, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
   end
 end
