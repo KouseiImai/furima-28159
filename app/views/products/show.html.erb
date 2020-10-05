@@ -6,26 +6,27 @@
     <h2 class="name">
       <%= @product.name %>
     </h2>
-    <%# 商品購入機能未実装の為、「sold out」機能はコメントアウト中 %>
-    <%# <div class='item-img-content'>
-      <%= image_tag "item-sample.png" ,class:"item-box-img" %> 
+
+    <div class='item-img-content'>
+      <%= image_tag @product.image, class: "item-box-img" if @product.image.attached? %>
       <%# 商品が売れている場合は、sold outを表示しましょう
       <div class='sold-out'>
         <span>Sold Out!!</span>
       </div>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
-    <%# </div>
+    </div>
     <div class="item-price-box">
       <span class="item-price">
-        ¥ 999,999,999
+        ¥ <%= @product.price %> 円
       </span>
       <span class="item-postage">
         (税込) 送料込み
-      </span> %> 
+      </span>
     <%# </div> %>
     <%# 商品購入機能未実装の為、「sold out」機能はコメントアウト中 %>
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
+
 
     <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
