@@ -9,11 +9,13 @@
 
     <div class='item-img-content'>
       <%= image_tag @product.image, class: "item-box-img" if @product.image.attached? %>
+      <%# 商品購入機能未実装の為、「sold out」機能はコメントアウト中 %>
       <%# 商品が売れている場合は、sold outを表示しましょう
       <div class='sold-out'>
         <span>Sold Out!!</span>
       </div>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
+      <%# 商品購入機能未実装の為、「sold out」機能はコメントアウト中 %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -22,10 +24,8 @@
       <span class="item-postage">
         (税込) 送料込み
       </span>
-    <%# </div> %>
-    <%# 商品購入機能未実装の為、「sold out」機能はコメントアウト中 %>
+    </div>
 
-    <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
     <% if user_signed_in? %>
       <% if @product.user_id == current_user.id %>
         <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
@@ -39,7 +39,6 @@
     <%# //商品が売れていない場合はこちらを表示しましょう %>
     <%# 商品購入機能未実装の為、購入画面ボタン部分 コメントアウト中 %>
 
-    <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
     <div class="item-explain-box">
       <span><%= @product.explanation %></span>
