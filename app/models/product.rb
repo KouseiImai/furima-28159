@@ -5,8 +5,8 @@ class Product < ApplicationRecord
   belongs_to_active_hash :shipping_charge
   belongs_to_active_hash :shipping_area
   belongs_to_active_hash :shipping_day
-
   has_one_attached :image
+  belongs_to :user
 
   # バリデーション
   with_options numericality: { other_than: 1 } do
@@ -21,6 +21,6 @@ class Product < ApplicationRecord
     validates :image
     validates :name
     validates :explanation
-    validates :price, numericality: { only_integer: true }, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/}
+    validates :price, numericality: { only_integer: true }, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
   end
 end

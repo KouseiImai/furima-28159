@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
-  before_action :move_to_index, except: :index
+  before_action :move_to_index, except: [:index, :show]
 
   def index
-    @products = Product.all.order("created_at DESC")
+    @products = Product.all.order('created_at DESC')
   end
 
   def new
@@ -16,6 +16,10 @@ class ProductsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @product = Product.find(params[:id])
   end
 
   def selling_price_calc
