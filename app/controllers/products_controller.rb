@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
-  before_action :set_product_information, only: [:show, :edit]
+  before_action :set_product_information, only: [:show, :edit, :update]
 
   def index
     @products = Product.all.order('created_at DESC')
@@ -26,7 +26,6 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
     @product.update(product_params)
     if @product.update(product_params)
       redirect_to product_path
