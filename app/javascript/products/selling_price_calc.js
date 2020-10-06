@@ -4,9 +4,9 @@ window.addEventListener('load', function(){
   let profit = document.getElementById("profit")
 
   let fee =  price_input * 0.1
-      fee = Math.floor(fee)
+  fee     = Math.floor(fee)
   let sales_profit = price_input - fee
-      sales_profit = Math.ceil(sales_profit)
+  sales_profit     = Math.ceil(sales_profit)
 
   addTaxPrice.innerHTML = fee
   profit.innerHTML = sales_profit
@@ -17,9 +17,9 @@ window.addEventListener('load', function(){
     let profit = document.getElementById("profit")
 
     let fee =  price_input * 0.1
-        fee = Math.floor(fee)
+    fee     = Math.floor(fee)
     let sales_profit = price_input - fee
-        sales_profit = Math.ceil(sales_profit)
+    sales_profit     = Math.ceil(sales_profit)
  
     addTaxPrice.innerHTML = fee
     profit.innerHTML = sales_profit
