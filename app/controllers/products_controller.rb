@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
-  before_action :set_product_information, only: [:show, :edit, :update]
+  before_action :set_product_information, only: [:show, :edit, :update, :destroy]
 
   def index
     @products = Product.all.order('created_at DESC')
@@ -33,6 +33,16 @@ class ProductsController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    @product.destroy
+    if @product.destroy
+      redirect_to root_path
+    else
+      render :show
+    end
+  end
+
 
   def selling_price_calc
   end
