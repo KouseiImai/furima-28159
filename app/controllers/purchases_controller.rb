@@ -11,7 +11,8 @@ class PurchasesController < ApplicationController
       @user_purchase.save
       redirect_to root_path
     else
-      render action: :new
+      @product = Product.find(params[:product_id])
+      render :index
     end
   end
 
