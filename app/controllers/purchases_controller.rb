@@ -18,11 +18,12 @@ class PurchasesController < ApplicationController
     end
   end
 
+  
+  private
+
   def check_login_user
     redirect_to new_user_session_path unless user_signed_in?
   end
-
-  private
 
   def user_purchase_params
     params.require(:user_purchase).permit(:product_id, :purchase_id, :postal_code, :prefecture_id, :municipal, :address, :building_name, :phone_number).merge(user_id: current_user.id).merge(product_id: params[:product_id]).merge(token: params[:token], price: params[:price])
