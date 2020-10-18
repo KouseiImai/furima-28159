@@ -1,4 +1,5 @@
 class PurchasesController < ApplicationController
+  before_action :check_login_user
 
   def index
     @product = Product.find(params[:product_id])
@@ -15,6 +16,10 @@ class PurchasesController < ApplicationController
       @product = Product.find(params[:product_id])
       render :index
     end
+  end
+
+  def check_login_user
+    redirect_to new_user_session_path unless user_signed_in?
   end
 
   private
