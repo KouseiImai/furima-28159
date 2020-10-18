@@ -1,7 +1,7 @@
 class UserPurchase
 
   include ActiveModel::Model
-  attr_accessor :product_id, :user_id, :postal_code, :prefecture_id, :municipal, :address, :building_name, :phone_number
+  attr_accessor :product_id, :user_id, :postal_code, :prefecture_id, :municipal, :address, :building_name, :phone_number, :token, :price
   
   with_options presence: true do
     validates :product_id

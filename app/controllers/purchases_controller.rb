@@ -6,6 +6,7 @@ class PurchasesController < ApplicationController
   end
   
   def create
+    binding.pry
     @user_purchase=UserPurchase.new(purchase_params)
     if @user_purchase.valid?
       @user_purchase.save
@@ -19,6 +20,6 @@ class PurchasesController < ApplicationController
   private
 
   def purchase_params
-    params.require(:user_purchase).permit(:product_id, :purchase_id, :postal_code, :prefecture_id, :municipal, :address, :building_name, :phone_number).merge(user_id: current_user.id).merge(product_id: params[:product_id])
+    params.require(:user_purchase).permit(:product_id, :purchase_id, :postal_code, :prefecture_id, :municipal, :address, :building_name, :phone_number).merge(user_id: current_user.id).merge(product_id: params[:product_id]).merge(token: params[:token], price: params[:price])
   end
 end
