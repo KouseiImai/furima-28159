@@ -4,6 +4,8 @@ class UserPurchase
   attr_accessor :product_id, :user_id, :postal_code, :prefecture_id, :municipal, :address, :building_name, :phone_number, :token, :price
   
   with_options presence: true do
+    validates :token
+    validates :price
     validates :product_id
     validates :user_id
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Input 7 characters and Including hyphen(-)"}
