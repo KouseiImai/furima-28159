@@ -2,6 +2,7 @@ class PurchasesController < ApplicationController
   before_action :check_login_user
 
   def index
+    binding.pry
     @product = Product.find(params[:product_id])
     @user_purchase=UserPurchase.new
   end
