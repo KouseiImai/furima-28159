@@ -14,15 +14,17 @@ const pay = () => {
       cvc: formData.get("user_purchase[cvc]"),
     };
 
+    const priceDom = document.getElementById("charge-form");
+    const price_get = document.getElementsByClassName("item-payment-price").item(0);
+    const price = price_get.innerHTML.trim().substr(1);
+    const priceObj = `<input value=${price} name=price type="hidden" >`;
+    priceDom.insertAdjacentHTML("beforeend",priceObj);
+
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} name='token' type="hidden">`;
-        const price_get = document.getElementsByClassName("item-payment-price").item(0);
-        const price = price_get.innerHTML.trim().substr(1);
-        const priceObj = `<input value=${price} name=price type="hidden">`;
-        renderDom.insertAdjacentHTML("beforeend",priceObj);
+        const tokenObj = `<input value=${token} name='token' type="hidden" >`;
         renderDom.insertAdjacentHTML("beforeend",tokenObj);
       }
 

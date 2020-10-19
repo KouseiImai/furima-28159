@@ -4,10 +4,6 @@ class UserPurchase
   attr_accessor :number, :exp_month, :exp_year, :cvc, :product_id, :user_id, :postal_code, :prefecture_id, :municipal, :address, :building_name, :phone_number, :token, :price
   
   with_options presence: true do
-    validates :number, format: { with: /\A[a-z\d]{,16}+\z/ , message: "is invalid. Input half-width and alphanumeric characters."}
-    validates :exp_month, format: { with: /[1-12]/ }
-    validates :exp_year, format: {with: /\A\d\z{,2}/, }
-    validates :cvc, format: { with: /\A\d\z{3,4}/, message: "is invalid. input 3 or 4 characters."}
     validates :token
     validates :price
     validates :product_id
