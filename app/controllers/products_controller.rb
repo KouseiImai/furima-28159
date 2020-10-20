@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all.order('created_at DESC')
+    @purchases = Purchase.all
   end
 
   def new
