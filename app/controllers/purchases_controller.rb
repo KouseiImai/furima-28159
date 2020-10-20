@@ -1,6 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :check_login_user
   before_action :check_seller
+  before_action :check_soldout, only: :index
 
   def index
     @product = Product.find(params[:product_id])
@@ -28,6 +29,12 @@ class PurchasesController < ApplicationController
   def check_seller
     if current_user.id == params[:user_id].to_i
       redirect_to root_path 
+    end
+  end
+
+  def check_soldout
+    if Purchase.find_by(product_id:params[:product_id]) != nil
+      redirect_to root_path
     end
   end
 
