@@ -9,13 +9,14 @@
 
     <div class='item-img-content'>
       <%= image_tag @product.image, class: "item-box-img" if @product.image.attached? %>
-      <%# 商品購入機能未実装の為、「sold out」機能はコメントアウト中 %>
-      <%# 商品が売れている場合は、sold outを表示しましょう
-      <div class='sold-out'>
-        <span>Sold Out!!</span>
-      </div>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
-      <%# 商品購入機能未実装の為、「sold out」機能はコメントアウト中 %>
+      <% @purchases.each do |purchase| %>
+        <% if @product.id == purchase.product_id %>
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div>
+          <% break %>
+        <% end %>
+      <% end %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -25,13 +26,15 @@
         (税込) 送料込み
       </span>
     </div>
-    <% if user_signed_in? %>
-      <% if @product.user_id == current_user.id %>
-        <%= link_to '商品の編集', edit_user_product_path, method: :get, class: "item-red-btn" %>
-        <p class='or-text'>or</p>
-        <%= link_to '削除', user_product_path, method: :delete, class:'item-destroy' %>
-      <% elsif %>
-        <%= link_to '購入画面に進む', user_product_purchases_path(@product.user_id, @product.id), method: :get ,class:"item-red-btn"%>
+    <% if @purchase == nil %>
+      <% if user_signed_in? %>
+        <% if @product.user_id == current_user.id %>
+          <%= link_to '商品の編集', edit_user_product_path, method: :get, class: "item-red-btn" %>
+          <p class='or-text'>or</p>
+          <%= link_to '削除', user_product_path, method: :delete, class:'item-destroy' %>
+        <% elsif %>
+          <%= link_to '購入画面に進む', user_product_purchases_path(@product.user_id, @product.id), method: :get ,class:"item-red-btn"%>
+        <% end %>
       <% end %>
     <% end %>
     <div class="item-explain-box">
