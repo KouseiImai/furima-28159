@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @purchase = Purchase.find_by(product_id:params[:id])
+    @purchase = Purchase.find_by(product_id: params[:id])
   end
 
   def edit
@@ -66,5 +66,4 @@ class ProductsController < ApplicationController
                                     :shipping_charge_id, :shipping_area_id, :shipping_day_id,
                                     :price).merge(user_id: current_user.id)
   end
-
 end

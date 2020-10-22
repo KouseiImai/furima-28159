@@ -5,11 +5,11 @@ class PurchasesController < ApplicationController
 
   def index
     @product = Product.find(params[:product_id])
-    @user_purchase=UserPurchase.new
+    @user_purchase = UserPurchase.new
   end
-  
+
   def create
-    @user_purchase=UserPurchase.new(user_purchase_params)
+    @user_purchase = UserPurchase.new(user_purchase_params)
     if @user_purchase.valid?
       pay_item
       @user_purchase.save
@@ -27,23 +27,21 @@ class PurchasesController < ApplicationController
   end
 
   def check_seller
-    if current_user.id == params[:user_id].to_i
-      redirect_to root_path 
-    end
+    redirect_to root_path if current_user.id == params[:user_id].to_i
   end
 
   def check_soldout
-    if Purchase.find_by(product_id:params[:product_id]) != nil
-      redirect_to root_path
-    end
+    redirect_to root_path if Purchase.find_by(product_id: params[:product_id]) != blank?
   end
 
   def user_purchase_params
-    params.require(:user_purchase).permit(:product_id, :purchase_id, :postal_code, :prefecture_id, :municipal, :address, :building_name, :phone_number).merge(user_id: current_user.id).merge(product_id: params[:product_id]).merge(token: params[:token], price: params[:price])
+    params.require(:user_purchase).permit(:product_id, :purchase_id, :postal_code, :prefecture_id, :municipal, :address,
+                                          :building_name, :phone_number).merge(user_id: current_user.id)
+          .merge(product_id: params[:product_id]).merge(token: params[:token], price: params[:price])
   end
 
   def pay_item
-    Payjp.api_key=ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: user_purchase_params[:price],
       card: user_purchase_params[:token],
