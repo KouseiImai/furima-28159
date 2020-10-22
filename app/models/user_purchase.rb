@@ -11,9 +11,8 @@ class UserPurchase
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Input 7 characters and Including hyphen(-)."}
     validates :prefecture_id, numericality: { other_than: 0, only_integer: true ,message: " can't be blank."}
     validates :municipal, format: { with: /\A[ぁ-んァ-ンー-龥]/, message: "is invalid. Input full-width characters."}
-    Address_REGEX = /([ぁ-んァ-ンー-龥])(\d)/.freeze
-    validates :address, format: { with: Address_REGEX, message: "is invalid. Input full-width characters and numbers."}
-    validates :phone_number, format: { with: /\A\d{10,11}\z/}
+    validates :address, format: { with: /([ぁ-んァ-ンー-龥])(\d)/, message: "is invalid. Input full-width characters and numbers."}
+    validates :phone_number, format: { with: /\A\d{10,11}\z/}, format: { with: /\A[090]/, message: "is not included 090"}, length: { maximum: 11}, numericality: true
   end
 
   def save
