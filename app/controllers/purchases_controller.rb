@@ -31,7 +31,7 @@ class PurchasesController < ApplicationController
   end
 
   def check_soldout
-    redirect_to root_path if Purchase.find_by(product_id: params[:product_id]) != blank?
+    redirect_to root_path if Purchase.find_by(product_id: params[:product_id]) == blank?
   end
 
   def user_purchase_params
