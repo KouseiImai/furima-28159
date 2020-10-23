@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
   before_action :set_product_information, only: [:show, :edit, :update, :destroy]
+  before_action :set_purchases, only: [:index, :show]
 
   def index
     @products = Product.all.order('created_at DESC')
@@ -20,6 +21,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @purchase = Purchase.find_by(product_id: params[:id])
   end
 
   def edit
@@ -28,7 +30,7 @@ class ProductsController < ApplicationController
   def update
     @product.update(product_params)
     if @product.update(product_params)
-      redirect_to product_path
+      redirect_to user_product_path
     else
       render :edit
     end
@@ -51,13 +53,17 @@ class ProductsController < ApplicationController
     redirect_to action: :index unless user_signed_in?
   end
 
-  def product_params
-    params.require(:product).permit(:image, :name, :explanation, :category_id, :condition_id,
-                                    :shipping_charge_id, :shipping_area_id, :shipping_day_id,
-                                    :price).merge(user_id: current_user.id)
+  def set_purchases
+    @purchases = Purchase.all
   end
 
   def set_product_information
     @product = Product.find(params[:id])
+  end
+
+  def product_params
+    params.require(:product).permit(:image, :name, :explanation, :category_id, :condition_id,
+                                    :shipping_charge_id, :shipping_area_id, :shipping_day_id,
+                                    :price).merge(user_id: current_user.id)
   end
 end

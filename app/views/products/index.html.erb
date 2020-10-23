@@ -128,14 +128,17 @@
       <% if @products != blank? %>
         <% @products.each do |product| %>
           <li class='list'>
-            <%= link_to product_path(product.id) do %> 
+            <%= link_to user_product_path(product.user_id, product.id,) do %> 
               <div class='item-img-content'>
                 <%= image_tag product.image, class: "item-img" if product.image.attached? %>
-                <%# 商品が売れていればsold outを表示しましょう(商品購入機能未実装の為残し) %>
-                <%# <div class='sold-out'>
-                  <span>Sold Out!!</span>
-                </div> %>
-                <%# //商品が売れていればsold outを表示しましょう(商品購入機能未実装の為残し) %>
+                <% @purchases.each do |purchase| %>
+                  <% if product.id == purchase.product_id %>
+                    <div class='sold-out'>
+                      <span>Sold Out!!</span>
+                    </div>
+                    <% break %>
+                  <% end %>
+                <% end %>
               </div>
               <div class='item-info'>
                 <h3 class='item-name'>
@@ -178,6 +181,6 @@
 </div>
 <div class='purchase-btn'>
   <span class='purchase-btn-text'>出品する</span>
-    <%= link_to image_tag('camera.png' , size: '185x50' ,class: "purchase-btn-icon"), "/products/new" %>
+    <%= link_to image_tag('camera.png' , size: '185x50' ,class: "purchase-btn-icon"), new_user_product_path(:user_id) %>
 </div>
 <%= render "shared/footer" %>
